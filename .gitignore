@@ -1,0 +1,12 @@
+.stack-work/
+.stack-work-prof/
+.make-work/
+dist-newstyle
+*~
+.vscode/
+.DS_Store
+bench.html
+*.prof
+.code-workspace
+Makefile
+*.cabal
