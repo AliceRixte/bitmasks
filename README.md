@@ -1,5 +1,8 @@
 # Bitmasks
 
+[![Haskell](https://img.shields.io/badge/language-Haskell-orange.svg)](https://haskell.org) [![BSD3 License](https://img.shields.io/badge/license-BSD3-blue.svg)](https://github.com/AliceRixte/bitmasks/LICENSE) [![Hackage](https://img.shields.io/hackage/v/bitmasks.svg)](https://hackage.haskell.org/package/bitmasks) [![Nightly](https://www.stackage.org/package/bitmasks/badge/nightly)](https://www.stackage.org/nightly/package/bitmasks) [![LTS](https://www.stackage.org/package/bitmasks/badge/lts)](https://www.stackage.org/lts/package/bitmasks)
+
+
 Bitmasks for boolean flags.
 
 ## Usage
