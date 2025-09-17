@@ -27,7 +27,37 @@
 --
 --------------------------------------------------------------------------------
 
-module Data.Bitmask.Internal where
+module Data.Bitmask.Internal
+  ( Bitmask(..)
+  -- ** Conversion to and from bits
+  , fromBits
+  , toBits
+  -- ** Check bitmask validity
+  , checkBitmask
+  -- ** Bitmask creation
+  , noFlag
+  , allFlags
+  , fromFlags
+  , toFlags
+  , fromExceptFlags
+  , toExceptFlags
+  , fromFlagsBool
+  , toFlagsBool
+  -- ** Flag querying
+  , getFlag
+  , getFlags
+  -- ** Flag modification
+  , addFlag
+  , addFlags
+  , deleteFlag
+  , deleteFlags
+  , flipFlag
+  , flipFlags
+  , setFlag
+  , setFlags
+  , modifyFlag
+  , modifyFlags
+  ) where
 
 import Data.Bits
 
@@ -46,6 +76,8 @@ import Data.Bits
 newtype Bitmask flag w = Bitmask w
   deriving (Eq, Ord, Show, Bits)
 
+
+
 -- | Check that a bitmask can represent all flags.
 --
 -- >>> checkBitmask (noFlag :: Bitmask MyFlags Word8)
@@ -55,6 +87,8 @@ checkBitmask :: forall flag w. (FiniteBits w, Enum flag, Bounded flag)
   => Bitmask flag w -> Bool
 checkBitmask (Bitmask w) =
   finiteBitSize w >= (fromEnum (maxBound :: flag) + 1)
+
+---------------------- Creation and conversion to lists ----------------------
 
 -- | A bitmask with all flags set to 'False'.
 --
@@ -72,15 +106,10 @@ noFlag = Bitmask zeroBits
 allFlags :: (FiniteBits w, Enum flag) => Bitmask flag w
 allFlags = Bitmask oneBits
 
--- | Create a bitmask from a list of flags to set to 'True'.
---
-flags :: (Bits w, Enum flag) => [flag] -> Bitmask flag w
-flags = foldr addFlag noFlag
-
 -- | Same as 'flags'.
 --
 fromFlags :: (Bits w, Enum flag) => [flag] -> Bitmask flag w
-fromFlags = flags
+fromFlags = foldr addFlag noFlag
 
 -- | Convert a bitmask to a list of flags that are set to 'True'.
 --
@@ -93,8 +122,8 @@ toFlags bm@(Bitmask w) =
 
 -- | Create a bitmask from a list of flags to set to 'False'
 --
-exceptFlags :: (FiniteBits w, Enum flag) => [flag] -> Bitmask flag w
-exceptFlags = foldr deleteFlag allFlags
+fromExceptFlags :: (FiniteBits w, Enum flag) => [flag] -> Bitmask flag w
+fromExceptFlags = foldr deleteFlag allFlags
 
 -- | Convert a bitmask to a list of flags that are set to 'False'.
 toExceptFlags :: forall flag w. (FiniteBits w, Enum flag, Bounded flag)
@@ -118,6 +147,8 @@ toFlagsBool bm@(Bitmask w) =
   let n = finiteBitSize w in
   [(toEnum i, getFlag (toEnum i) bm)
     | i <- [0 .. min (n - 1) (fromEnum (maxBound :: flag))]]
+
+---------------------- Querying and modifying flags ----------------------
 
 -- | Get a flag from a bitmask.
 --

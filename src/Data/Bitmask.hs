@@ -49,8 +49,9 @@
 --------------------------------------------------------------------------------
 
 module Data.Bitmask
-  ( module Data.Bits
-  , module Data.Bitmask.Internal
+  ( module Data.Bitmask.Internal
+  -- ** Re-exports from "Data.Bits"
+  , module Data.Bits
   )
   where
 
