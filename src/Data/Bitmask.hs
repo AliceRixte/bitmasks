@@ -11,7 +11,7 @@
 -- Stability   :  stable
 -- Portability :  portable
 --
---  Bitmasks for efficient storing of boolean flags
+-- Bitmasks for efficient storing of boolean flags
 --
 --------------------------------------------------------------------------------
 
