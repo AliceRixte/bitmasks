@@ -88,7 +88,7 @@ import Data.Bits
 --  | Ham
 --  deriving (Show, Eq, Bounded, Enum)
 --
---  type PizzaMask = Bitmask8 PizzaTopping Word8
+--  type PizzaMask = Bitmask Word8 PizzaTopping
 -- @
 --
 newtype Bitmask w flag = Bitmask w
