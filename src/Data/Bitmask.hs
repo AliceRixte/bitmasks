@@ -13,45 +13,47 @@
 --
 -- Bitmasks for boolean flags.
 --
--- == Usage
---
--- @
--- data MyFlags =
---     FlagA
---   | FlagB
---   | FlagC
--- deriving (Show, Eq, Bounded, Enum)
---
--- type MyBitmask = Bitmask MyFlags Word8
---
--- @
---
--- >>> import Data.Word
--- >>> data MyFlags = FlagA | FlagB | FlagC deriving (Show, Eq, Bounded, Enum)
---
--- >>> checkBitmask (noFlag :: Bitmask MyFlags Word8)
--- True
---
---
--- >>> type MyBitmask = Bitmask MyFlags Word8
---
--- >>> getFlag FlagA (noFlag :: MyBitmask)
--- False
---
--- >>> getFlag FlagA (allFlags :: MyBitmask)
--- True
--- >>> getFlag FlagA (setFlag FlagA True noFlag)
--- True
---
--- >>> getFlags [FlagA, FlagB] (fromFlags [FlagA] :: MyBitmask)
--- [True,False]
---
 --------------------------------------------------------------------------------
 
 module Data.Bitmask
-  ( module Data.Bitmask.Internal
+  ( Bitmask
+  , Bitmask8
+  , Bitmask16
+  , Bitmask32
+  , Bitmask64
+  -- ** Conversion to and from bits
+  , fromBits
+  , toBits
+  -- ** Check bitmask validity
+  , checkBitmask
+  -- ** Bitmask creation
+  , noFlag
+  , allFlags
+  , fromFlags
+  , toFlags
+  , fromExceptFlags
+  , toExceptFlags
+  , fromFlagsBool
+  , toFlagsBool
+  -- ** Flag querying
+  , getFlag
+  , getFlags
+  -- ** Flag modification
+  , addFlag
+  , addFlags
+  , deleteFlag
+  , deleteFlags
+  , flipFlag
+  , flipFlags
+  , setFlag
+  , setFlags
+  , modifyFlag
+  , modifyFlags
   -- ** Re-exports from "Data.Bits"
-  , module Data.Bits
+  , (.&.)
+  , (.|.)
+  , xor
+  , complement
   )
   where
 

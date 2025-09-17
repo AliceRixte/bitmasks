@@ -19,14 +19,14 @@ data PizzaTopping =
 instance Arbitrary PizzaTopping where
   arbitrary = chooseEnum (minBound :: PizzaTopping, maxBound :: PizzaTopping)
 
-type PizzaMask = Bitmask PizzaTopping Word8
+type PizzaMask = Bitmask8 PizzaTopping
 
 -- Pizza examples
 margherita :: PizzaMask
 margherita = fromFlags [Cheese]
 
 veggie :: PizzaMask
-veggie = exceptFlags [Ham]
+veggie = fromExceptFlags [Ham]
 
 hawaiian :: PizzaMask
 hawaiian = addFlags [Pineapple, Ham] margherita

@@ -12,7 +12,7 @@ import Test.QuickCheck
 import Data.Bitmask.Internal hiding (flags)
 import Data.Pizza
 
-instance Arbitrary w => Arbitrary (Bitmask flag w) where
+instance Arbitrary w => Arbitrary (Bitmask w flag) where
   arbitrary = Bitmask <$> arbitrary
 
 maxPizza :: Word8
@@ -39,7 +39,7 @@ toFromFlags = property $ \bm@(Bitmask w :: PizzaMask) ->
 
 fromToExcept :: Property
 fromToExcept = property $ \(flags :: [PizzaTopping])->
-    toExceptFlags (exceptFlags flags :: PizzaMask) == rmDups flags
+    toExceptFlags (fromExceptFlags flags :: PizzaMask) == rmDups flags
 
 
 fromToFlagsBool :: Property

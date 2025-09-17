@@ -17,7 +17,8 @@ data PizzaTopping =
   | Ham
   deriving (Show, Eq, Bounded, Enum)
 
-type PizzaMask = Bitmask PizzaTopping Word8
+-- We only need 8 bits since there are only 4 toppings
+type PizzaMask = Bitmask8 PizzaTopping
 ```
 
 ### Creating bitmasks
