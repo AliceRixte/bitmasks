@@ -1,5 +1,6 @@
 {-# LANGUAGE ScopedTypeVariables #-}
-{-# OPTIONS_GHC -Wno-orphans #-}
+{-# OPTIONS_GHC -Wno-orphans #-} -- arbitrary instance
+{-# OPTIONS_GHC -Wno-x-partial #-} -- to use head
 
 module Data.BitmaskSpec where
 
@@ -9,7 +10,7 @@ import Data.List (group, sort)
 import Test.Hspec
 import Test.QuickCheck
 
-import Data.Bitmask.Internal hiding (flags)
+import Data.Bitmask.Internal
 import Data.Pizza
 
 instance Arbitrary w => Arbitrary (Bitmask w flag) where

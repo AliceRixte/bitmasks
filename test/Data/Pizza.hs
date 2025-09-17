@@ -2,7 +2,6 @@
 
 module Data.Pizza where
 
-import Data.Word (Word8)
 import Data.Bitmask
 
 import Test.QuickCheck

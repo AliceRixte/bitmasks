@@ -34,7 +34,6 @@ tests:
     dependencies:
     - hspec >= 2.11
     - QuickCheck >= 2.14
-    - generic-arbitrary
     - bitmasks
     ghc-options:
     - -rtsopts
