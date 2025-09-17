@@ -1,12 +1,12 @@
-name:           flags
+name:           bitmasks
 version:        0
-github:         "AliceRixte/flags"
+github:         "AliceRixte/bitmasks"
 license:        BSD-3-Clause
 author:         "Alice Rixte"
 maintainer:     "alice.rixte@u-bordeaux.fr"
 copyright:      "(c) Alice Rixte 2025"
 category:       data
-synopsis:       Get, set and embed fields
+synopsis:       Bitmasks for efficient storing of boolean flags
 
 extra-source-files:
 - README.md
@@ -14,7 +14,7 @@ extra-source-files:
 extra-doc-files:
 - CHANGELOG.md
 
-description:         Please see the README on GitHub at <https://github.com/AliceRixte/flags#readme>
+description:         Please see the README on GitHub at <https://github.com/AliceRixte/bitmasks#readme>
 
 
 dependencies:
@@ -28,14 +28,14 @@ library:
   source-dirs: src
 
 tests:
-  flags-test:
+  bitmasks-test:
     main:                Spec.hs
     source-dirs:         test
     dependencies:
     - hspec >= 2.11
     - QuickCheck >= 2.14
     - generic-arbitrary
-    - flags
+    - bitmasks
     ghc-options:
     - -rtsopts
     - -with-rtsopts=-N
