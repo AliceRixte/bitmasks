@@ -3,6 +3,7 @@
 
 module Data.BitmaskSpec where
 
+import Data.Word
 import Data.List (group, sort)
 
 import Test.Hspec
@@ -13,6 +14,9 @@ import Data.Pizza
 
 instance Arbitrary w => Arbitrary (Bitmask flag w) where
   arbitrary = Bitmask <$> arbitrary
+
+maxPizza :: Word8
+maxPizza = 2 ^ (fromEnum (maxBound :: PizzaTopping) + 1) - 1
 
 rmDups :: (Ord a) => [a] -> [a]
 rmDups = map head . group . sort
@@ -31,19 +35,16 @@ fromToFlags = property $ \(flags :: [PizzaTopping])->
 
 toFromFlags :: Property
 toFromFlags = property $ \bm@(Bitmask w :: PizzaMask) ->
-  w >= 16 || fromFlags (toFlags bm) == bm
+  w > maxPizza || fromFlags (toFlags bm) == bm
 
 fromToExcept :: Property
 fromToExcept = property $ \(flags :: [PizzaTopping])->
-  toExceptFlags (exceptFlags flags :: PizzaMask) == rmDups flags
+    toExceptFlags (exceptFlags flags :: PizzaMask) == rmDups flags
 
-toFromExcept :: Property
-toFromExcept = property $ \bm@(Bitmask w :: PizzaMask) ->
-  w >= 16 || exceptFlags (toExceptFlags bm) == bm
 
 fromToFlagsBool :: Property
 fromToFlagsBool = property $ \(flagsBool :: [(PizzaTopping, Bool)]) ->
-  toFlagBools (fromFlagsBool flagsBool :: PizzaMask) == rmDups flagsBool
+  toFlagsBool (fromFlagsBool flagsBool :: PizzaMask) == rmDups flagsBool
 
 getAdd :: Property
 getAdd = property $ \(flag :: PizzaTopping) (bm :: PizzaMask) ->
@@ -74,7 +75,6 @@ spec = do
     it "fromToFlags" $ property fromToFlags
     it "toFromFlags" $ property toFromFlags
     it "fromToExcept" $ property fromToExcept
-    it "toFromExcept" $ property toFromExcept
     it "getFlag flag allFlags == True" $ property getAll
     it "getFlag flag noFlag == False" $ property getNone
     it "getFlag flag (addFlag flag bm) == True" $ property getAdd
