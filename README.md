@@ -1,12 +1,10 @@
-# flags
+# Bitmasks
 
-Bitmask utilities for boolean flags.
-
-
+Bitmasks for boolean flags.
 
 ## Usage
 
-Define your flag type as an enumeration:
+Define your flags as an enumeration:
 
 ```haskell
 import Data.Word
@@ -24,21 +22,17 @@ type PizzaMask = Bitmask PizzaTopping Word8
 
 ### Creating bitmasks
 
-
 ```haskell
 -- A Margherita pizza (cheese only)
 margherita :: PizzaMask
 margherita = fromFlags [Cheese]
 
 veggie :: PizzaMask
-veggie = exceptFlags [Ham]
+veggie = fromExceptFlags [Ham]
 
 ```
 
-
 ### Access and modify flags
-
-
 
 Use `getFlag` to check if a pizza has a specific topping:
 
@@ -57,16 +51,12 @@ Add toppings to a pizza:
 True
 ```
 
-
-
 Make any pizza vegetarian (bitwise AND):
 
 ```haskell
 >>> veggieHawaiian = veggie .&. hawaiian
 >>> getFlag Ham veggieHawaiian
 ```
-
-
 
 Toggle (I have no idea what I'm talking about) the toppings :
 
@@ -83,10 +73,7 @@ Remove a topping:
 True
 ```
 
-
-
 ### Convert to lists
-
 
 ```haskell
 -- Get all toppings as a list
@@ -99,5 +86,3 @@ True
 >>> toFlagsBool funghi
 [(Cheese,True),(Mushrooms,True),(Pineapple,False),(Ham,False)]
 ```
-
-
