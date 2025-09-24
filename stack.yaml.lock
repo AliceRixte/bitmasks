@@ -3,21 +3,7 @@
 # For more information, please see the documentation at:
 #   https://docs.haskellstack.org/en/stable/lock_files
 
-packages:
-- completed:
-    hackage: lr-acts-0.0.1@sha256:0b3840943171be658d7a2d1ff75987cd4e07cf91d15e3e77041796ef28b650bd,2148
-    pantry-tree:
-      sha256: 0674997090f32cad8b9a46d272967ba3825f5fb56cd6eb006928eced47518442
-      size: 807
-  original:
-    hackage: lr-acts-0.0.1
-- completed:
-    hackage: microlens-pro-0.2.0.4@sha256:af8fc5760d913704c5283e649dd90feaf6bddd739f9b75bf52495b7964830bea,3377
-    pantry-tree:
-      sha256: 6fc091c70de2fc1db2af16e5b64780f7dbdb570e4da02614f28bfb1ecd65db46
-      size: 430
-  original:
-    hackage: microlens-pro-0.2.0.4
+packages: []
 snapshots:
 - completed:
     sha256: f4a61482dcad21151331bf84ec85bee9be43965f143791fa4bb202ac1e443e1b
