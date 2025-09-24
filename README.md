@@ -5,6 +5,22 @@
 
 Bitmasks for efficient storing of boolean flags.
 
+## Alternatives
+
+The [bitset](https://hackage.haskell.org/package/bitset) uses a similar implementation to this library. It is:
+
+* Better written
+* Probably a lot faster
+
+than this library.
+
+*But*, for now (2025-09-24) it is also abandoned, and it does not compile.
+
+I made this library before knowing [bitset](https://hackage.haskell.org/package/bitset) existed. One day when I have the time I might try to dive into [bitset](https://hackage.haskell.org/package/bitset) and either:
+
+* Update [bitset](https://hackage.haskell.org/package/bitset) and mark this library as stale
+* Import the code of [bitset](https://hackage.haskell.org/package/bitset) in this library
+
 ## Usage
 
 Define your flags as an enumeration:
