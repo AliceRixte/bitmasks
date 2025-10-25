@@ -78,7 +78,7 @@ Make any pizza vegetarian (bitwise AND):
 >>> getFlag Ham veggieHawaiian
 ```
 
-Toggle (I have no idea what I'm talking about) the toppings :
+Toggle the toppings (yes, topping toggling should be a thing):
 
 ```haskell
 >>> funghi = flipFlags [Pineapple, Mushroom] veggieHawaiian
