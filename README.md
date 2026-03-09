@@ -7,7 +7,7 @@ Bitmasks for efficient storing of boolean flags.
 
 ## Alternatives
 
-You might prefer the [bitset](https://hackage.haskell.org/package/bitset) package, that uses a similar implementation to this library. The main difference between `bitset` and `bitmasks` is that; contrarily to `bitset`, `bitmasks` is intended to be imported non qualified.
+You might prefer the [bitset](https://hackage.haskell.org/package/bitset) package, that uses a similar implementation to this library. The main difference between `bitset` and `bitmasks` is that, contrarily to `bitset`, `bitmasks` is intended to be imported non qualified.
 
 ## Usage
 
