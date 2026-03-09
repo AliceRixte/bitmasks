@@ -28,4 +28,4 @@ veggie :: PizzaMask
 veggie = fromExceptFlags [Ham]
 
 hawaiian :: PizzaMask
-hawaiian = addFlags [Pineapple, Ham] margherita
+hawaiian = insertFlags [Pineapple, Ham] margherita

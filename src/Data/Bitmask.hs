@@ -37,8 +37,8 @@ module Data.Bitmask
   , getFlag
   , getFlags
   -- ** Flag modification
-  , addFlag
-  , addFlags
+  , insertFlag
+  , insertFlags
   , deleteFlag
   , deleteFlags
   , flipFlag

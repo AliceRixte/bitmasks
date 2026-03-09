@@ -49,11 +49,11 @@ fromToFlagsBool = property $ \(flagsBool :: [(PizzaTopping, Bool)]) ->
 
 getAdd :: Property
 getAdd = property $ \(flag :: PizzaTopping) (bm :: PizzaMask) ->
-  getFlag flag (addFlag flag bm) == True
+  getFlag flag (insertFlag flag bm) == True
 
 getAdds :: Property
 getAdds = property $ \(flags :: [PizzaTopping]) (bm :: PizzaMask) ->
-  all id $ getFlags flags (addFlags flags bm)
+  all id $ getFlags flags (insertFlags flags bm)
 
 getDelete :: Property
 getDelete = property $ \(flag :: PizzaTopping) (bm :: PizzaMask) ->
@@ -78,8 +78,8 @@ spec = do
     it "fromToExcept" $ property fromToExcept
     it "getFlag flag allFlags == True" $ property getAll
     it "getFlag flag noFlag == False" $ property getNone
-    it "getFlag flag (addFlag flag bm) == True" $ property getAdd
-    it "all id (getFlags flags (addFlags flags bm))" $ property getAdds
+    it "getFlag flag (insertFlag flag bm) == True" $ property getAdd
+    it "all id (getFlags flags (insertFlags flags bm))" $ property getAdds
     it "getFlag flag (deleteFlag flag bm) == False" $ property getDelete
     it "all not (getFlags flags (deleteFlags flags bm))" $ property getDeletes
     it "modifyFlags not flags bm == flipFlags flags bm" $ property flipModifs

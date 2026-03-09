@@ -50,6 +50,8 @@ module Data.Bitmask.Internal
   , getFlag
   , getFlags
   -- ** Flag modification
+  , insertFlag
+  , insertFlags
   , addFlag
   , addFlags
   , deleteFlag
@@ -140,7 +142,7 @@ allFlags = Bitmask oneBits
 -- >>> hawaiian = fromFlags [Pineapple, Ham, Cheese] :: PizzaMask
 --
 fromFlags :: (Bits w, Enum flag) => [flag] -> Bitmask w flag
-fromFlags = foldr addFlag noFlag
+fromFlags = foldr insertFlag noFlag
 
 -- | Convert a bitmask to a list of flags that are set to 'True'.
 --
@@ -217,6 +219,8 @@ addFlag :: (Bits w, Enum flag) =>
   flag -> Bitmask w flag -> Bitmask w flag
 addFlag f = setFlag f True
 
+{-# DEPRECATED addFlag "Use insertFlag instead." #-}
+
 -- | Add multiple flags to a bitmask (set them to 'True').
 --
 -- >>> hawaiian = addFlags [Pineapple, Ham] margherita
@@ -224,6 +228,24 @@ addFlag f = setFlag f True
 addFlags :: (Bits w, Enum flag)
   => [flag] -> Bitmask w flag -> Bitmask w flag
 addFlags fs bm = foldr addFlag bm fs
+
+{-# DEPRECATED addFlags "Use insertFlags instead." #-}
+
+-- | Add a flag to a bitmask (set it to 'True').
+--
+-- >>> margherita = insertFlag Cheese (noFlag :: PizzaMask)
+--
+insertFlag :: (Bits w, Enum flag) =>
+  flag -> Bitmask w flag -> Bitmask w flag
+insertFlag f = setFlag f True
+
+-- | Add multiple flags to a bitmask (set them to 'True').
+--
+-- >>> hawaiian = insertFlags [Pineapple, Ham] margherita
+--
+insertFlags :: (Bits w, Enum flag)
+  => [flag] -> Bitmask w flag -> Bitmask w flag
+insertFlags fs bm = foldr insertFlag bm fs
 
 -- | Remove a flag from a bitmask (set it to 'False').
 --
