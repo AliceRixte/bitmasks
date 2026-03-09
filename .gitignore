@@ -9,4 +9,3 @@ bench.html
 *.prof
 .code-workspace
 Makefile
-*.cabal
