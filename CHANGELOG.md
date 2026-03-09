@@ -10,3 +10,7 @@ and this project adheres to the
 ## 0 - 2025-09-17
 
 * Bitmask data types with API and tests.
+
+## 0.0.1 - 2026-03-09
+
+* Rename addFlag -> insertFlag.
